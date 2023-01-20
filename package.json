@@ -11,7 +11,8 @@
   "scripts": {
     "start": "node ./dist/index.js",
     "build": "yarn exec ncc build src/index.ts -o dist --source-map",
-    "serve": "yarn && yarn build && yarn start"
+    "serve": "yarn && yarn build && yarn start",
+    "dev": "yarn exec ncc run src/index.ts"
   },
   "devDependencies": {
     "@tsconfig/node18": "^1.0.1",
