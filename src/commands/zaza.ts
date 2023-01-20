@@ -1,7 +1,7 @@
 import fs from "fs";
 import { Occasion } from "../models";
 import { MessageContext } from "../types";
-import { getRandomArbitrary, getRandomFloat } from "../utils";
+import { getRandomFloat, getRandomInt } from "../utils";
 
 const TIMEOUT_MS = 5 * 60 * 1000; // 5 min
 
@@ -31,7 +31,7 @@ async function handleZaza(ctx: MessageContext) {
         })
     )?.[0]?.occasion_result || 0;
 
-  const stolen = total > 0 && getRandomArbitrary(0, 100) <= 4;
+  const stolen = total > 0 && getRandomInt(0, 100) <= 4;
   const stolenResult = Number(((total / 100) * 10).toFixed(2));
 
   if (stolen && stolenResult) {
@@ -54,7 +54,7 @@ async function handleZaza(ctx: MessageContext) {
     return;
   }
 
-  const bonus = getRandomArbitrary(0, 100) <= 5;
+  const bonus = getRandomInt(0, 100) <= 6;
   if (bonus) {
     const bonusResult = 5;
     await new Occasion({
