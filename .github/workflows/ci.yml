@@ -1,0 +1,20 @@
+name: Deploy
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    name: Deploy bot
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pull repo and restart containers
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd ./zazametr-bot
+            git pull
+            docker compose up -d
