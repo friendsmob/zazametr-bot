@@ -19,7 +19,7 @@ $ docker compose stop
 $ docker compose start
 
 # Remove containers and volumes
-$ docker compose down
+$ docker compose down -v
 ```
 
 ## Local development without Docker
