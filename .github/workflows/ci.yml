@@ -14,7 +14,8 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.SSH_PORT }}
           script: |
             cd ./zazametr-bot
-            git pull
+            git pull origin main
             docker compose up -d
