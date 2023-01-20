@@ -54,6 +54,28 @@ async function handleZaza(ctx: MessageContext) {
     return;
   }
 
+  const bonus = getRandomArbitrary(0, 100) <= 5;
+  if (bonus) {
+    const bonusResult = 5;
+    await new Occasion({
+      user_id,
+      chat_id,
+      username,
+      result: bonusResult,
+      timestamp: Date.now(),
+    }).save();
+
+    ctx.replyWithAnimation(
+      { source: fs.readFileSync("src/assets/bonus.gif") },
+      {
+        caption: `<b>${username}</b>, ЗАЛУПА выдал тебе <b>${bonusResult} г.</b> бонусной зазы!`,
+        parse_mode: "HTML",
+      }
+    );
+
+    return;
+  }
+
   const result = getRandomFloat(0.1, 2.5, 1);
 
   await new Occasion({
